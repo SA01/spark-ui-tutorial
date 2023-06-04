@@ -6,19 +6,18 @@ import time
 
 
 def create_spark_session(is_local: bool) -> SparkSession:
-    if is_local:
-        conf = SparkConf().set("spark.driver.memory", "8g")
+    conf = SparkConf().set("spark.driver.memory", "8g")
 
-        spark_session = SparkSession\
-            .builder\
-            .master("local[4]")\
-            .config(conf=conf)\
-            .appName("Spark UI Tutorial") \
-            .getOrCreate()
+    spark_session = SparkSession\
+        .builder\
+        .master("local[4]")\
+        .config(conf=conf)\
+        .appName("Spark UI Tutorial") \
+        .getOrCreate()
 
-        spark_session.sparkContext.setCheckpointDir("checkpoint")
+    spark_session.sparkContext.setCheckpointDir("checkpoint")
 
-        return spark_session
+    return spark_session
 
 
 def simple_job():
